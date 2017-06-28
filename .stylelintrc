@@ -1,0 +1,55 @@
+{
+    "plugins": [
+        "stylelint-order"
+    ],
+    "rules": {
+        "order/properties-alphabetical-order": true,
+
+
+        "color-hex-case": "upper",
+        "color-hex-length": "long",
+        "color-named": "never",
+        "color-no-invalid-hex": true,
+
+        "font-family-name-quotes": "always-unless-keyword",
+
+        "declaration-block-no-duplicate-properties": [
+            true,
+            {
+                "ignore": [ "consecutive-duplicates" ]
+            }
+        ],
+        "declaration-colon-space-after": "always-single-line",
+        "declaration-colon-space-before": "never",
+
+        "number-leading-zero": "always",
+        "number-max-precision": 6,
+        "length-zero-no-unit": true,
+
+        "value-no-vendor-prefix": true,
+        "value-keyword-case": "lower",
+
+        "value-list-comma-space-after": "always-single-line",
+        "value-list-comma-space-before": "never",
+
+        "shorthand-property-no-redundant-values": true,
+
+        "property-no-vendor-prefix": true,
+
+        "block-no-empty": true,
+        "block-opening-brace-newline-after": "always",
+        "block-opening-brace-space-before": "never",
+        "block-closing-brace-newline-before": "always",
+        "block-closing-brace-newline-after": [
+            "always",
+            {
+                "ignoreAtRules": [ "else" ]
+            }
+        ],
+
+        "selector-list-comma-space-before": "never",
+        "selector-list-comma-newline-after": "always",
+
+        "selector-no-vendor-prefix": true
+    }
+}
