@@ -1,0 +1,42 @@
+{
+  "name": "strongbox",
+  "version": "0.0.1",
+  "description": "A UI for your secrets",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "build": "grunt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EquipmentShare/strongbox.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EquipmentShare/strongbox/issues"
+  },
+  "homepage": "https://github.com/EquipmentShare/strongbox#readme",
+  "devDependencies": {
+    "autoprefixer": "^7.1.1",
+    "grunt": "^1.0.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-postcss": "^0.8.0",
+    "grunt-rollup": "^1.0.1",
+    "load-grunt-configs": "^1.0.0",
+    "load-grunt-tasks": "^3.5.2",
+    "postcss": "^6.0.3",
+    "postcss-clean": "^1.0.2",
+    "rollup": "^0.43.0",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "stylelint": "^7.12.0",
+    "stylelint-order": "^0.5.0",
+    "time-grunt": "^1.4.0"
+  },
+  "dependencies": {
+    "chance": "^1.0.10",
+    "normalizecss": "^3.0.0"
+  }
+}
