@@ -1,6 +1,7 @@
 # Compiled files
 public/css/
 public/js/
+src/content/html/templates.json
 
 # Logs
 logs
