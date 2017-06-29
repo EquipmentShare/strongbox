@@ -4,6 +4,17 @@ html{
 }
 
 body{
+    display: grid;
     font-size: 1.6rem;
+    grid-template-columns: 15rem 1fr;
     line-height: 2.2rem;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+}
+
+li{
+    list-style: none;
 }
