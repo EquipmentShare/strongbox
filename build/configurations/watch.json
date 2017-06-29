@@ -1,0 +1,45 @@
+{
+    "templates": {
+        "files": [
+            "./src/**/*.html"
+        ],
+        "tasks": [
+            "parseTemplates",
+            "notify:templates"
+        ],
+        "options": {
+            "interrupt": true
+        }
+    },
+    "app": {
+        "files": [
+            "./src/**/*.js",
+            "./src/**/*.json",
+            "!./src/**/clientRoutes.json"
+        ],
+        "tasks": [
+            "eslint",
+            "parseRoutes",
+            "rollup",
+            "concat:app",
+            "notify:compile"
+        ],
+        "options": {
+            "interrupt": true
+        }
+    },
+    "css": {
+        "files": [
+            "./src/css/*.css"
+        ],
+        "tasks": [
+            "postcss:lint",
+            "concat:css",
+            "postcss:build",
+            "notify:css"
+        ],
+        "options": {
+            "interrupt": true
+        }
+    }
+}

@@ -5,11 +5,22 @@ var fs = require( "fs" );
 
 var port = process.argv[ 2 ] || 8020;
 var cwd = process.cwd();
-var root = cwd + "/public/";
+
+var root = path.join( cwd, "/public/" );
 
 var contentTypes = {
     ".html": "text/html"
 };
+
+function getFile( uri ){
+    var file = uri;
+
+    if( !file || file == "/" ){
+        file = "index.html";
+    }
+
+    return file;
+}
 
 function getContentType( p ){
     var content = contentTypes[ path.extname( p ) ];
@@ -33,10 +44,9 @@ function serveFile( p, response ){
             }
             else{
                 let content = getContentType( p ) || "binary";
-                let relativePath = p.replace( cwd, "" );
 
                 /* eslint no-console: "off", no-debugger: "off", vars-on-top: "off", "no-unused-vars": "off" */
-                console.log( ` <== .${relativePath}` );
+                console.log( `<== .${p}` );
 
                 response.writeHead( 200 );
                 response.write( file, content );
@@ -46,33 +56,31 @@ function serveFile( p, response ){
     );
 }
 
+function handleRequest( p, response, request ){
+    fs.access( p, ( error ) => {
+        if( error ){
+            p = path.join( root, "/index.html" );
+
+            serveFile( p, response );
+        }
+        else{
+            serveFile( p, response );
+        }
+    } );
+}
+
 function notFound( p, response ){
     response.writeHead( 404 );
     response.end();
 }
 
-function strongboxHandler( uri, response, request ){
-    var filename = path.join( root, uri );
-
-    fs.access( filename, ( err ) => {
-        if( err ){
-            filename = path.join( root, "/index.html" );
-            serveFile( filename, response );
-        }
-        else if( fs.statSync( filename ).isDirectory() ){
-            strongboxHandler( path.join( filename, "/index.html" ), response, request );
-        }
-        else{
-            serveFile( filename, response );
-        }
-    } );
-}
-
 function serve( request, response ){
     var uri = url.parse( request.url ).pathname;
+    var file = getFile( uri );
+    var filename = path.join( root, file );
 
-    console.log( `==>  ${uri}` );
-    strongboxHandler( uri, response, request );
+    console.log( `==> ${uri}` );
+    handleRequest( filename, response, request );
 }
 
 console.log( "Creating a server..." );

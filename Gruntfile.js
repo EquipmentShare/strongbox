@@ -1,9 +1,9 @@
-module.exports = function( grunt ){
+module.exports = ( grunt ) => {
     "use strict";
 
     var config = require( "load-grunt-configs" )( grunt, {
         "config": {
-            "src": "config/grunt/configurations/*.*"
+            "src": "build/configurations/*.*"
         }
     } );
 
@@ -11,5 +11,5 @@ module.exports = function( grunt ){
     require( "time-grunt" )( grunt );
 
     grunt.initConfig( config );
-    grunt.task.loadTasks( "config/grunt/tasks/" );
+    grunt.task.loadTasks( "build/tasks/" );
 };

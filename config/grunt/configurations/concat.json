@@ -1,9 +1,0 @@
-{
-    "css": {
-        "src": [
-            "node_modules/normalizecss/normalize.css",
-            "src/css/*.css"
-        ],
-        "dest": "public/css/screen.css" 
-    }
-}

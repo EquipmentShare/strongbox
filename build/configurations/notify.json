@@ -1,0 +1,22 @@
+{
+    "build": {
+        "options": {
+            "message": "Build finished."
+        }
+    },
+    "templates": {
+        "options": {
+            "message": "Templates compiled."
+        }
+    },
+    "compile": {
+        "options": {
+            "message": "App bundle finished."
+        }
+    },
+    "css": {
+        "options": {
+            "message": "Sass compiled to CSS."
+        }
+    }
+}

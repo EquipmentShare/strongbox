@@ -1,0 +1,16 @@
+{
+    "app": {
+        "options": {
+            "banner": "<%= pkg.banner %>"
+        },
+        "src": [ "public/js/strongbox.js" ],
+        "dest": "public/js/strongbox.js"
+    },
+    "css": {
+        "src": [
+            "node_modules/normalizecss/normalize.css",
+            "src/css/*.css"
+        ],
+        "dest": "public/css/screen.css"
+    }
+}

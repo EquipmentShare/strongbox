@@ -1,0 +1,10 @@
+{
+    "en": {
+        "copy": {
+            "try": "Tried to navigate to",
+            "unreachable": "but it was unreachable.",
+            "http": "HTTP status code"
+        },
+        "homeLink": "Home"
+    }
+}
