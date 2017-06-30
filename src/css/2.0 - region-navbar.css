@@ -13,6 +13,11 @@ body > nav ul{
     position: relative;
 }
 
+body > nav li{
+    height: 4rem;
+    line-height: 2rem;
+}
+
 body > nav li + li{
     border-top: 1px solid var( --struts );
 }
@@ -23,10 +28,12 @@ body > nav li:nth-last-child( 2 ){
 
 body > nav li:last-of-type{
     bottom: 0;
+    height: 2rem;
     left: 0;
+    padding: 1rem;
     position: absolute;
     text-align: center;
-    width: 100%;
+    width: calc( 100% - 2rem );
 }
 
 body > nav li:last-of-type svg{
@@ -53,7 +60,6 @@ body > nav li a{
     grid-template-columns: 2rem 1fr;
     padding: 1rem;
     text-decoration: none;
-    width: 100%;
 }
 
 body > nav li svg{
