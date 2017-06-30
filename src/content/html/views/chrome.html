@@ -1,20 +1,31 @@
-<nav>
+<nav class-collapsed="collapsed">
     <ul>
-        <li>
+        <li class-selected="selected == 'home'">
             <a href="/">
                 <svg>
                     <use xlink:href="/img/light.svg#home"></use>
                 </svg>
-                <span>Home</span>
+                {{ #if !collapsed }}<span>Home</span>{{ /if }}
             </a>
         </li>
-        <li>
+        <li class-selected="selected == 'secrets'">
             <a href="/secrets">
                 <svg>
                     <use xlink:href="/img/light.svg#lock-alt"></use>
                 </svg>
-                <span>Secrets</span>
+                {{ #if !collapsed }}<span>Secrets</span>{{ /if }}
             </a>
+        </li>
+        <li on-click="flex">
+            {{ #collapsed }}
+            <svg>
+                <use xlink:href="/img/light.svg#angle-double-right"></use>
+            </svg>
+            {{ else }}
+            <svg>
+                <use xlink:href="/img/light.svg#angle-double-left"></use>
+            </svg>
+            {{ / }}
         </li>
     </ul>
 </nav>

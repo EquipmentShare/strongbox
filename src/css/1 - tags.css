@@ -1,12 +1,15 @@
 html{
     font-size: var( --base-size );
+    height: 100%;
     line-height: calc( 1.5 * var( --base-size ) );
 }
 
 body{
     display: grid;
     font-size: 1.6rem;
-    grid-template-columns: 15rem 1fr;
+    grid-gap: 1rem;
+    grid-template-columns: max-content 1fr;
+    height: 100%;
     line-height: 2.2rem;
 }
 

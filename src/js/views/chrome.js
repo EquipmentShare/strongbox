@@ -5,18 +5,21 @@ import Templates from "../Templates.js";
 var ChromeView = Ractive.extend( {
     "template": Templates.getView( "chrome" ),
     data(){
-        return {};
-    },
-    "components": {},
-
-    onrender(){
-        this.redraw();
-    },
-    oninsert(){
-        this.redraw();
+        return {
+            "collapsed": false,
+            "selected": "home"
+        };
     },
 
-    redraw(){}
+    "on": {
+        flex(){
+            this.toggle( "collapsed" );
+        }
+    },
+
+    setMenu( newSelection = "home" ){
+        this.set( "selected", newSelection );
+    }
 } );
 
 export default ChromeView;
