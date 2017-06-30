@@ -1,7 +1,7 @@
 {
     "en": {
         "titles": {
-            "main": "Log in to Strongbox"
+            "main": "Log in to your Vault instance"
         },
         "labels": {
             "username": "Username",

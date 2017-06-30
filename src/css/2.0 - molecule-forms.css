@@ -25,6 +25,7 @@ form .field + .field{
 }
 
 form .field label{
+    font-size: 1.2em;
     width: 100%;
 }
 

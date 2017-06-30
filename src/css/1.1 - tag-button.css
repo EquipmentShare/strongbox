@@ -1,0 +1,18 @@
+button{
+    background-color: var( --super-subtle );
+    border: 1px solid var( --subtle );
+    border-radius: var( --small-radius );
+    box-shadow: var( --small-shadow );
+    margin: 0;
+    padding: var( --big-size ) var( --super-size );
+}
+
+button:active,
+button:focus{
+    background-color: var( --subtle );
+    border: 1px solid var( --main );
+}
+
+button:active{
+    box-shadow: none;
+}

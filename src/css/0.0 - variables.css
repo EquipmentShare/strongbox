@@ -18,5 +18,6 @@
 
     /* VFX */
     --main-shadow: 5px 5px 5px rgba( 204, 204, 204, 1 );
+    --small-shadow: 2px 2px 2px rgba( 204, 204, 204, 1 );
     --tiny-shadow: 1px 1px 1px rgba( 204, 204, 204, 1 );
 }
