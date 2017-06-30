@@ -1,0 +1,63 @@
+/* Nav bar */
+body > nav{
+    width: 100%;
+}
+
+body > nav.collapsed{
+    width: 4rem;
+}
+
+body > nav ul{
+    border-right: 1px solid var( --struts );
+    height: 100%;
+    position: relative;
+}
+
+body > nav li + li{
+    border-top: 1px solid var( --struts );
+}
+
+body > nav li:nth-last-child( 2 ){
+    border-bottom: 1px solid var( --struts );
+}
+
+body > nav li:last-of-type{
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
+body > nav li:last-of-type svg{
+    margin: auto;
+}
+
+body > nav li.selected{
+    background-color: var( --main );
+    color: var( --brightest );
+}
+
+body > nav li.selected + li{
+    border-top: 1px solid var( --main );
+}
+
+body > nav li.selected svg{
+    fill: var( --brightest );
+}
+
+body > nav li a{
+    color: inherit;
+    display: grid;
+    grid-gap: 0.5rem;
+    grid-template-columns: 2rem 1fr;
+    padding: 1rem;
+    text-decoration: none;
+    width: 100%;
+}
+
+body > nav li svg{
+    height: 2rem;
+    width: 2rem;
+}
+/* END Nav bar */

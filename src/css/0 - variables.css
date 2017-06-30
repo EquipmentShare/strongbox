@@ -1,3 +1,8 @@
 :root{
     --base-size: 10px;
+
+    --main: rgba( 117, 88, 53, 1 );
+    --brightest: rgba( 255, 255, 255, 1 );
+
+    --struts: rgba( 69, 47, 4, 1 );
 }

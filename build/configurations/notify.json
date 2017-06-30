@@ -16,7 +16,7 @@
     },
     "css": {
         "options": {
-            "message": "Sass compiled to CSS."
+            "message": "CSS compiled to distributable."
         }
     }
 }

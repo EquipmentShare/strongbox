@@ -3,7 +3,6 @@ module.exports = function postcssTask(){
 
     var clean = require( "postcss-clean" );
     var styleLint = require( "stylelint" );
-    var autoprefixer = require( "autoprefixer" );
 
     return {
         "lint": {
@@ -23,18 +22,6 @@ module.exports = function postcssTask(){
         "build": {
             "options": {
                 "processors": [
-                    autoprefixer( {
-                        "browsers": [ // Autoprefixer uses browserlist >= 2.0
-                            "last 2 versions",
-                            "not ie_mob 1-100",
-                            "not samsung 1-100",
-                            "not baidu 1-100",
-                            "not blackberry 1-100",
-                            "not and_uc 1-100",
-                            "not and_qq 1-100",
-                            "not android < 56"
-                        ]
-                    } ),
                     clean( {
                         "inlineTimeout": 10000
                     } )
