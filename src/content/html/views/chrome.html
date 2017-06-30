@@ -3,19 +3,19 @@
         <li class-selected="selected == 'home'">
             <a href="/">
                 <icon icon="home" />
-                {{ #if !collapsed }}<span>Home</span>{{ /if }}
+                {{ #if !collapsed }}<span>{{{ translations.fill.home }}}</span>{{ /if }}
             </a>
         </li>
         <li class-selected="selected == 'secrets'">
             <a href="/secrets">
                 <icon icon="lock-alt" />
-                {{ #if !collapsed }}<span>Secrets</span>{{ /if }}
+                {{ #if !collapsed }}<span>{{{ translations.fill.secrets }}}</span>{{ /if }}
             </a>
         </li>
         <li class-selected="selected == 'login'">
             <a href="/login">
                 <icon icon="sign-in" />
-                {{ #if !collapsed }}<span>Login</span>{{ /if }}
+                {{ #if !collapsed }}<span>{{{ translations.fill.login }}}</span>{{ /if }}
             </a>
         </li>
         <li on-click="flex">

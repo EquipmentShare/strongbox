@@ -5,12 +5,15 @@ import Icon from "../components/Icon.js";
 import Templates from "../Templates.js";
 import Storage from "../Storage.js";
 
+import translations from "../nls/views/chrome.js";
+
 var ChromeView = Ractive.extend( {
     "template": Templates.getView( "chrome" ),
     data(){
         return {
             "collapsed": false,
-            "selected": "home"
+            "selected": "home",
+            translations
         };
     },
     "components": {
