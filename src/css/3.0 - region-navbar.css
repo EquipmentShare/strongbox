@@ -1,5 +1,6 @@
 /* Nav bar */
 body > nav{
+    box-shadow: var( --main-shadow );
     width: 100%;
 }
 
@@ -8,7 +9,6 @@ body > nav.collapsed{
 }
 
 body > nav ul{
-    border-right: 1px solid var( --struts );
     height: 100%;
     position: relative;
 }
