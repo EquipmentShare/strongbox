@@ -1,0 +1,49 @@
+form{
+    border: 1px solid var( --super-subtle );
+    border-radius: var( --main-radius );
+    box-shadow: var( --tiny-shadow );
+    margin: var( --big-size ) auto;
+    max-width: 50rem;
+    padding: var( --super-size );
+}
+
+input,
+select,
+textarea{
+    border: 1px solid var( --super-subtle );
+    border-bottom: 1px solid var( --subtle );
+    margin: 0;
+    padding: var( --main-size );
+}
+
+form .field{
+    width: 100%;
+}
+
+form .field + .field{
+    margin-top: var( --super-size );
+}
+
+form .field label{
+    width: 100%;
+}
+
+form .field input,
+form .field select,
+form .field textarea{
+    width: calc( 100% - 2 * var( --main-size ) - 2px );
+}
+
+field.focus input,
+input:focus,
+field.focus select,
+select:focus,
+field.focus textarea,
+textarea:focus{
+    border: 1px solid var( --subtle );
+}
+
+form > .controls{
+    margin-top: var( --big-size );
+    text-align: right;
+}

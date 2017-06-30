@@ -1,0 +1,22 @@
+:root{
+    /* SIZES */
+    --base-size: 10px;
+    --small-radius: 2px;
+    --main-radius: 5px;
+    --main-size: 0.5rem;
+    --big-size: 1rem;
+    --extra-size: 1.5rem;
+    --super-size: 2rem;
+
+    /* COLORS */
+    --main: rgba( 117, 88, 53, 1 );
+    --brightest: rgba( 255, 255, 255, 1 );
+
+    --struts: rgba( 69, 47, 4, 1 );
+    --subtle: rgba( 163, 155, 139, 1 );
+    --super-subtle: rgba( 163, 155, 139, 0.20 );
+
+    /* VFX */
+    --main-shadow: 5px 5px 5px rgba( 204, 204, 204, 1 );
+    --tiny-shadow: 1px 1px 1px rgba( 204, 204, 204, 1 );
+}

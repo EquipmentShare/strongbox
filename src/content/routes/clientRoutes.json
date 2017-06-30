@@ -1,1 +1,1 @@
-{"Core":{"home":{"route":"/","sluggable":"/"}}}
+{"Core":{"home":{"route":"/","sluggable":"/"},"login":{"route":"/login","sluggable":"/login"}}}

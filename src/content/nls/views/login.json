@@ -1,0 +1,14 @@
+{
+    "en": {
+        "titles": {
+            "main": "Log in to Strongbox"
+        },
+        "labels": {
+            "username": "Username",
+            "password": "Password"
+        },
+        "controls": {
+            "login": "Login"
+        }
+    }
+}
