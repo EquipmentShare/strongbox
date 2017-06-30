@@ -28,6 +28,7 @@ body > nav li:nth-last-child( 2 ){
 
 body > nav li:last-of-type{
     bottom: 0;
+    cursor: pointer;
     height: 2rem;
     left: 0;
     padding: 1rem;
