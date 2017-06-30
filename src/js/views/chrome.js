@@ -1,5 +1,7 @@
 import Ractive from "ractive";
 
+import Icon from "../components/Icon.js";
+
 import Templates from "../Templates.js";
 import Storage from "../Storage.js";
 
@@ -10,6 +12,9 @@ var ChromeView = Ractive.extend( {
             "collapsed": false,
             "selected": "home"
         };
+    },
+    "components": {
+        "icon": Icon
     },
 
     "on": {
