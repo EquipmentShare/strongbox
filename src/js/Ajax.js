@@ -1,6 +1,7 @@
 import ajax from "superagent/superagent.js";
 
 import Authentication from "./Authentication.js";
+import System from "./System";
 
 var Ajax;
 
@@ -19,10 +20,10 @@ Ajax = {
             .send( options.data );
     },
     sendToVault( options ){
-        var vault = "vault://v1/";
+        var settings = System.getSettings();
 
         options.headers = addBearerToken( options.headers || {} );
-        options.url =  `${vault}${options.url}`;
+        options.url =  `${settings.vault}${options.url}`;
 
         return Ajax.send( options );
     }

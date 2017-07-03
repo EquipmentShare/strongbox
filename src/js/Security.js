@@ -6,7 +6,7 @@ Security = {
     getSession(){
         var sess;
 
-        sess = Storage.Cookies.get( "estrack" );
+        sess = Storage.Cookies.get( "strongbox" );
 
         if( sess ){
             sess = JSON.parse( atob( sess ) );
@@ -18,10 +18,10 @@ Security = {
         return sess;
     },
     setSession( data ){
-        Storage.Cookies.set( "estrack", btoa( JSON.stringify( data ) ) );
+        Storage.Cookies.set( "strongbox", btoa( JSON.stringify( data ) ) );
     },
     endSession(){
-        Storage.Cookies.remove( "estrack" );
+        Storage.Cookies.remove( "strongbox" );
     },
 
     isSecureProtocol( uri ){
