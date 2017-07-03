@@ -5,7 +5,7 @@ import unset from "lodash/fp/unset";
 import set from "lodash/fp/set";
 import get from "lodash/fp/get";
 
-import Json from "../Json.js";
+import Json from "../../Json.js";
 
 var LocalStorageStrategy;
 

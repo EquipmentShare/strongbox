@@ -8,9 +8,11 @@
     "watch": "grunt watch"
   },
   "dependencies": {
+    "cookies-js": "1.2.3",
     "lodash": "4.17.4",
     "page": "1.7.1",
-    "ractive": "0.9.1"
+    "ractive": "0.9.1",
+    "superagent": "3.5.2"
   },
   "repository": {
     "type": "git",
