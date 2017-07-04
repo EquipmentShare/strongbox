@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "build": "grunt",
-    "watch": "grunt watch"
+    "watch": "grunt watch",
+    "postinstall": "node ./setup.js"
   },
   "dependencies": {
     "chance": "1.0.10",
