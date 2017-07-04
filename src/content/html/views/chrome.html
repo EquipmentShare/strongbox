@@ -12,12 +12,21 @@
                 {{ #if !collapsed }}<span>{{{ translations.fill.secrets }}}</span>{{ /if }}
             </a>
         </li>
+        {{ #loggedIn }}
+        <li>
+            <a href="/logout">
+                <icon icon="sign-out" />
+                {{ #if !collapsed }}<span>{{{ translations.fill.logout }}}</span>{{ /if }}
+            </a>
+        </li>
+        {{ else }}
         <li class-selected="selected == 'login'">
             <a href="/login">
                 <icon icon="sign-in" />
                 {{ #if !collapsed }}<span>{{{ translations.fill.login }}}</span>{{ /if }}
             </a>
         </li>
+        {{ / }}
         <li on-click="flex">
             {{ #collapsed }}
             <icon icon="angle-double-right" />

@@ -20,6 +20,10 @@ var Authentication = {
     },
     startSession( session ){
         Security.setSession( session );
+    },
+
+    isLoggedIn(){
+        return Boolean( Authentication.getToken() );
     }
 };
 

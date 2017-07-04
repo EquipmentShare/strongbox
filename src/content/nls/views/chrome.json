@@ -3,7 +3,8 @@
         "fill": {
             "home": "Home",
             "secrets": "Secrets",
-            "login": "Login"
+            "login": "Login",
+            "logout": "Logout"
         }
     }
 }

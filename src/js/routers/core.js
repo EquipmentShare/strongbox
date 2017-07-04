@@ -14,6 +14,11 @@ var dynamicRouting = {
         "menu": "login",
         "action": "login",
         "controller": AuthController
+    },
+    "logout": {
+        "menu": "login",
+        "action": "logout",
+        "controller": AuthController
     }
 };
 
