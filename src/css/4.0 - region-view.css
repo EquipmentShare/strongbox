@@ -1,0 +1,14 @@
+/* main view */
+body > .view{
+    text-align: left;
+}
+
+body > .view > h1,
+body > .view > h2,
+body > .view > h3,
+body > .view > h4,
+body > .view > h5,
+body > .view > h6{
+    text-align: center;
+}
+/* End main view */

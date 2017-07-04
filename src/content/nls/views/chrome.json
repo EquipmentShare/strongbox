@@ -1,0 +1,10 @@
+{
+    "en": {
+        "fill": {
+            "home": "Home",
+            "secrets": "Secrets",
+            "login": "Login",
+            "logout": "Logout"
+        }
+    }
+}

@@ -1,7 +1,11 @@
+# Generated files
+src/content/data/config.json
+
 # Compiled files
 public/css/
 public/js/
 src/content/html/templates.json
+src/content/routes/clientRoutes.json
 
 # Logs
 logs

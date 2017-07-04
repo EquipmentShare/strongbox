@@ -2,5 +2,13 @@
     "home": {
         "route": "/",
         "sluggable": "/"
+    },
+    "login": {
+        "route": "/login",
+        "sluggable": "/login"
+    },
+    "logout": {
+        "route": "/logout",
+        "sluggable": "/logout"
     }
 }

@@ -1,0 +1,14 @@
+<h1>{{{ translations.titles.main }}}</h1>
+<form on-submit="login">
+    <div class="field">
+        <label for="username">{{{ translations.labels.username }}}</label>
+        <input id="username" name="username" />
+    </div>
+    <div class="field">
+        <label for="password">{{{ translations.labels.password }}}</label>
+        <input id="password" name="password" type="password" />
+    </div>
+    <div class="controls">
+        <button on-click="login" type="submit">{{{ translations.controls.login }}}</button>
+    </div>
+</form>

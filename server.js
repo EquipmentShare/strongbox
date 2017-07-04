@@ -9,7 +9,9 @@ var cwd = process.cwd();
 var root = path.join( cwd, "/public/" );
 
 var contentTypes = {
-    ".html": "text/html"
+    ".html": "text/html",
+    ".css": "text/css",
+    ".svg": "image/svg+xml"
 };
 
 function getFile( uri ){

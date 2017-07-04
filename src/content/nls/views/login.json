@@ -1,0 +1,14 @@
+{
+    "en": {
+        "titles": {
+            "main": "Log in to your Vault instance"
+        },
+        "labels": {
+            "username": "Username",
+            "password": "Password"
+        },
+        "controls": {
+            "login": "Login"
+        }
+    }
+}

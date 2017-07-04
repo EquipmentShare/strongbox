@@ -75,6 +75,7 @@ View = {
 
         View.unload();
         chrome.setMenu( ctx ? ctx.definition.menu : null );
+        chrome.redraw();
 
         return View.mount( [ view, ctx ], chrome.find( ".view" ), name );
     },

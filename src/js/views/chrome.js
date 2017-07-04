@@ -2,16 +2,25 @@ import Ractive from "ractive";
 
 import Icon from "../components/Icon.js";
 
+import Authentication from "../Authentication.js";
 import Templates from "../Templates.js";
 import Storage from "../Storage.js";
+
+import translations from "../nls/views/chrome.js";
 
 var ChromeView = Ractive.extend( {
     "template": Templates.getView( "chrome" ),
     data(){
         return {
             "collapsed": false,
-            "selected": "home"
+            "selected": "home",
+            translations
         };
+    },
+    "computed": {
+        loggedIn(){
+            return Authentication.isLoggedIn();
+        }
     },
     "components": {
         "icon": Icon
@@ -40,6 +49,9 @@ var ChromeView = Ractive.extend( {
             "collapsed": menu && menu.collapsed || false,
             "selected": menu && menu.active || "home"
         } );
+    },
+    redraw(){
+        this.update( "loggedIn" );
     }
 } );
 
