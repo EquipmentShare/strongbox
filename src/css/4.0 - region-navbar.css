@@ -14,7 +14,7 @@ body > nav ul{
 }
 
 body > nav li{
-    height: 4rem;
+    height: 6rem;
     line-height: 2rem;
 }
 
@@ -59,7 +59,7 @@ body > nav li a{
     display: grid;
     grid-gap: 0.5rem;
     grid-template-columns: 2rem 1fr;
-    padding: 1rem;
+    padding: 2rem;
     text-decoration: none;
 }
 
