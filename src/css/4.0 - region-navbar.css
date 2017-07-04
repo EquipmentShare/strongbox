@@ -1,11 +1,15 @@
 /* Nav bar */
 body > nav{
+    --item-height: 6rem;
+    --item-closed-width: 6rem;
+    --item-padding: var( --super-size );
+
     box-shadow: var( --main-shadow );
     width: 100%;
 }
 
 body > nav.collapsed{
-    width: 4rem;
+    width: var( --item-closed-width );
 }
 
 body > nav ul{
@@ -14,7 +18,7 @@ body > nav ul{
 }
 
 body > nav li{
-    height: 6rem;
+    height: var( --item-height );
     line-height: 2rem;
 }
 
@@ -31,10 +35,10 @@ body > nav li:last-of-type{
     cursor: pointer;
     height: 2rem;
     left: 0;
-    padding: 1rem;
+    padding: var( --item-padding );
     position: absolute;
     text-align: center;
-    width: calc( 100% - 2rem );
+    width: calc( 100% - 2 * var( --item-padding ) );
 }
 
 body > nav li:last-of-type svg{
@@ -59,7 +63,7 @@ body > nav li a{
     display: grid;
     grid-gap: 0.5rem;
     grid-template-columns: 2rem 1fr;
-    padding: 2rem;
+    padding: var( --item-padding );
     text-decoration: none;
 }
 
