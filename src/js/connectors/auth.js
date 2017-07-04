@@ -3,7 +3,7 @@ import Chance from "chance";
 import Ajax from "../Ajax.js";
 
 var AuthConnector = {
-    test( username, password ){
+    ldapLogin( username, password ){
         // return this
         //     .sendToVault( {
         //         "method": "post",
