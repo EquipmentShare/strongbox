@@ -1,0 +1,7 @@
+{
+    "state": "NOT_LOGGED_IN",
+    "actions": [ {
+        "type": "REDIRECT",
+        "route": "login"
+    } ]
+}

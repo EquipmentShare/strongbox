@@ -32,6 +32,7 @@ function CoreRoutesLoader( router ){
         router(
             RegExp( `^${path}(?:/)?$` ),
             Bridge.steps.injectDefinitionStep.bind( definition ),
+            Bridge.steps.enforcePermissionsStep.bind( router ),
             Bridge.steps.loadAppStateStep,
             Bridge.steps.setupChromeStep,
             Bridge.steps.actionStep
