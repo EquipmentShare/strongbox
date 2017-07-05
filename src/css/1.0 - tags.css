@@ -30,3 +30,27 @@ button{
     margin: 0;
     padding: var( --main-size ) var( --big-size );
 }
+
+h1{
+    font-size: calc( 2 * var( --super-size ) );
+}
+
+h2{
+    font-size: calc( 1.5 * var( --super-size ) );
+}
+
+h3{
+    font-size: var( --super-size );
+}
+
+h4{
+    font-size: var( --extra-size );
+}
+
+h5{
+    font-size: var( --big-size );
+}
+
+h6{
+    font-size: calc( 0.75 * var( --big-size ) );
+}
