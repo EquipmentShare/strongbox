@@ -1,19 +1,19 @@
 form{
-    border: 1px solid var( --super-subtle );
-    border-radius: var( --main-radius );
-    box-shadow: var( --tiny-shadow );
-    margin: var( --big-size ) auto;
+    border: 1px solid var( --color-super-subtle );
+    border-radius: var( --size-radius-main );
+    box-shadow: var( --vfx-tiny-shadow );
+    margin: var( --size-big ) auto;
     max-width: 50rem;
-    padding: var( --super-size );
+    padding: var( --size-super );
 }
 
 input,
 select,
 textarea{
-    border: 1px solid var( --super-subtle );
-    border-bottom: 1px solid var( --subtle );
+    border: 1px solid var( --color-super-subtle );
+    border-bottom: 1px solid var( --color-subtle );
     margin: 0;
-    padding: var( --main-size );
+    padding: var( --size-main );
 }
 
 form .field{
@@ -21,7 +21,7 @@ form .field{
 }
 
 form .field + .field{
-    margin-top: var( --super-size );
+    margin-top: var( --size-super );
 }
 
 form .field label{
@@ -32,7 +32,7 @@ form .field label{
 form .field input,
 form .field select,
 form .field textarea{
-    width: calc( 100% - 2 * var( --main-size ) - 2px );
+    width: calc( 100% - 2 * var( --size-main ) - 2px );
 }
 
 field.focus input,
@@ -41,10 +41,10 @@ field.focus select,
 select:focus,
 field.focus textarea,
 textarea:focus{
-    border: 1px solid var( --subtle );
+    border: 1px solid var( --color-subtle );
 }
 
 form > .controls{
-    margin-top: var( --big-size );
+    margin-top: var( --size-big );
     text-align: right;
 }

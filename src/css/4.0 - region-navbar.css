@@ -2,9 +2,9 @@
 body > nav{
     --item-height: 6rem;
     --item-closed-width: 6rem;
-    --item-padding: var( --super-size );
+    --item-padding: var( --size-super );
 
-    box-shadow: var( --main-shadow );
+    box-shadow: var( --vfx-main-shadow );
     width: 100%;
 }
 
@@ -23,11 +23,11 @@ body > nav li{
 }
 
 body > nav li + li{
-    border-top: 1px solid var( --struts );
+    border-top: 1px solid var( --color-struts );
 }
 
 body > nav li:nth-last-child( 2 ){
-    border-bottom: 1px solid var( --struts );
+    border-bottom: 1px solid var( --color-struts );
 }
 
 body > nav li:last-of-type{
@@ -46,16 +46,16 @@ body > nav li:last-of-type svg{
 }
 
 body > nav li.selected{
-    background-color: var( --main );
-    color: var( --brightest );
+    background-color: var( --color-main);
+    color: var( --color-brightest );
 }
 
 body > nav li.selected + li{
-    border-top: 1px solid var( --main );
+    border-top: 1px solid var( --color-main);
 }
 
 body > nav li.selected svg{
-    fill: var( --brightest );
+    fill: var( --color-brightest );
 }
 
 body > nav li a{
