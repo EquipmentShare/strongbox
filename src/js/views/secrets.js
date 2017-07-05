@@ -8,6 +8,7 @@ var SecretsView = {
     "template": Templates.getView( "secrets" ),
     data(){
         return {
+            "visible": false,
             translations
         };
     },
