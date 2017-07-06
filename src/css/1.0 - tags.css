@@ -1,8 +1,8 @@
 html{
     font-family: "Source Sans Pro", sans-serif;
-    font-size: var( --base-size );
+    font-size: var( --size-base );
     height: 100%;
-    line-height: calc( 1.5 * var( --base-size ) );
+    line-height: calc( 1.5 * var( --size-base ) );
 }
 
 body{
@@ -24,9 +24,33 @@ li{
 }
 
 button{
-    background-color: var( --super-subtle );
-    border: 1px solid var( --subtle );
-    border-radius: var( --small-radius );
+    background-color: var( --color-super-subtle );
+    border: 1px solid var( --color-subtle );
+    border-radius: var( --size-radius-small );
     margin: 0;
-    padding: var( --main-size ) var( --big-size );
+    padding: var( --size-main ) var( --size-big );
+}
+
+h1{
+    font-size: calc( 2 * var( --size-super ) );
+}
+
+h2{
+    font-size: calc( 1.5 * var( --size-super ) );
+}
+
+h3{
+    font-size: var( --size-super );
+}
+
+h4{
+    font-size: var( --size-extra );
+}
+
+h5{
+    font-size: var( --size-big );
+}
+
+h6{
+    font-size: calc( 0.75 * var( --size-big ) );
 }

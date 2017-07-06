@@ -1,6 +1,14 @@
+import Permission from "../../Permission.js";
+
+import RedirectAction from "../permissions/actions/Redirect.js";
+
 import Chrome from "../../Chrome.js";
 import Error from "../../Error.js";
 import State from "../../State.js";
+
+var actions = {
+    "REDIRECT": RedirectAction
+};
 
 var Bridge = {
     "appState": {
@@ -12,6 +20,28 @@ var Bridge = {
             context.definition = this;
 
             next();
+        },
+        enforcePermissionsStep( context, next ){
+            var permissions = context.definition.permissions || [];
+
+            permissions.forEach( ( permission ) => {
+                permission.handler = Permission.getHandler( permission );
+            } );
+
+            if( Permission.passes( permissions ) ){
+                next();
+            }
+            else{
+                permissions.forEach( ( permission ) => {
+                    permission.actions.forEach( ( action ) => {
+                        action.handler = actions[ action.type ];
+                    } );
+                } );
+
+                context.definition.permissions = permissions;
+
+                Permission.runActions( this, permissions );
+            }
         },
         setupChromeStep( context, next ){
             var definition = context.definition;
