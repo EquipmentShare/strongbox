@@ -5,11 +5,13 @@ import RootReducer from "./common/reducers/root.js";
 import Auth from "./controllers/Auth.js";
 import Home from "./controllers/Home.js";
 import Secrets from "./controllers/Secrets.js";
+import ErrorC from "./controllers/Error.js";
 
 var controllers = [
     Auth,
     Home,
-    Secrets
+    Secrets,
+    ErrorC
 ];
 
 var Store = {

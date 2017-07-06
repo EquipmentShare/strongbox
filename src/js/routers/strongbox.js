@@ -1,19 +1,28 @@
-import ErrorView from "../views/error.js";
+import { createRouteChangeUnhandled } from "../common/actions/ROUTE_CHANGE_UNHANDLED.js";
 
-import View from "../View.js";
+import Store from "../Store.js";
 
 function NotFoundRouter( router ){
     router( ( context, next ) => {
-        var error = ErrorView;
-
-        error.data = error.data || {};
-        error.data.construct = {
-            "verb": "GET",
-            "path": context.canonicalPath,
-            "error": 404
-        };
-
-        View.load( ErrorView );
+        Store
+            .get()
+            .dispatch( createRouteChangeUnhandled(
+                Object.assign(
+                    {},
+                    context,
+                    {
+                        "definition": {
+                            "name": "error",
+                            "menu": "error"
+                        }
+                    }
+                ),
+                {
+                    "verb": "GET",
+                    "path": context.canonicalPath,
+                    "error": 404
+                }
+            ) );
 
         next();
     } );
