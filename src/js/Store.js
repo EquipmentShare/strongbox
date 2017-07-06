@@ -19,6 +19,11 @@ var Store = {
         controllers.forEach( ( controller ) => {
             store.subscribe( () => controller.subscriber( store.getState() ) );
         } );
+    },
+    getLastAction( state ){
+        var lastAction = state.log.length > 0 ? state.log[ state.log.length - 1 ] : false;
+
+        return lastAction;
     }
 };
 
