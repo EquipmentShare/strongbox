@@ -1,26 +1,12 @@
-import route from "page";
+import Router from "./js/common/routing/Router.js";
 
-import * as StrongboxRouter from "./js/routers/strongbox.js";
-import CoreRouter from "./js/routers/core.js";
-import SecretsRouter from "./js/routers/secrets.js";
+import Store from "./js/Store.js";
 
-var strongbox = route;
-var loaded = 0;
-var routers = [
-    CoreRouter,
-    SecretsRouter
-];
+window[ window.ns ].store = Store.init();
+Store.registerAllControllers( window[ window.ns ].store );
 
-window[ window.ns ].router = strongbox;
+Router.init( ( strongbox ) => {
+    window[ window.ns ].router = strongbox;
 
-routers.forEach( ( router ) => {
-    router( strongbox );
-
-    loaded++;
-
-    if( loaded == routers.length ){
-        StrongboxRouter.after( strongbox );
-
-        strongbox();
-    }
+    strongbox();
 } );

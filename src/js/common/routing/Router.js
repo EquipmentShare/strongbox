@@ -1,3 +1,4 @@
+import page from "page";
 import merge from "lodash/fp/merge";
 import defaults from "lodash/fp/defaults";
 import template from "lodash/template";
@@ -5,6 +6,14 @@ import template from "lodash/template";
 import Routes from "./Routes.js";
 import State from "../../State.js";
 
+import Core from "../../routers/core.js";
+import Secrets from "../../routers/secrets.js";
+import * as Strongbox from "../../routers/strongbox.js";
+
+var routers = [
+    Core,
+    Secrets
+];
 var Router;
 
 function routeToFullPath( path ){
@@ -57,6 +66,15 @@ Router = {
         if( options.name ){
             routeToFullPath( Router.hydrate( options.name, options.namespace, options.params ) );
         }
+    },
+    init( done ){
+        routers.forEach( ( router ) => {
+            router( page );
+        } );
+
+        Strongbox.after( page );
+
+        done( page );
     }
 };
 

@@ -6,9 +6,9 @@ import LoginView from "../views/login.js";
 import AuthConnector from "../connectors/auth.js";
 import Authentication from "../Authentication.js";
 
-var Home = Controller.create( {
+var Auth = Controller.create( {
     actionLogin( ctx ){
-        this.loadView( LoginView, ctx );
+        Auth.loadView( LoginView, ctx );
     },
     actionLogout(){
         Authentication.logout();
@@ -29,7 +29,25 @@ var Home = Controller.create( {
                     Router.go( follow );
                 }
             );
+    },
+
+    subscriber( state ){
+        var responder = ( () => {} );
+        var responders = {
+            "login": Auth.actionLogin,
+            "logout": Auth.actionLogout
+        };
+        var hasState = Boolean( state );
+        var routeName = hasState && state.routing.currentContext.definition.name;
+
+        if( hasState && responders[ routeName ] ){
+            responder = () => {
+                responders[ routeName ]( state.routing.currentContext );
+            };
+        }
+
+        responder();
     }
 } );
 
-export default Home;
+export default Auth;

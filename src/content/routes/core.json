@@ -1,14 +1,17 @@
 {
     "home": {
         "route": "/",
-        "sluggable": "/"
+        "sluggable": "/",
+        "menu": "home"
     },
     "login": {
         "route": "/login",
-        "sluggable": "/login"
+        "sluggable": "/login",
+        "menu": "login"
     },
     "logout": {
         "route": "/logout",
-        "sluggable": "/logout"
+        "sluggable": "/logout",
+        "menu": "login"
     }
 }

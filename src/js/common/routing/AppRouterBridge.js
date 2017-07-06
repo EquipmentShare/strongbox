@@ -1,20 +1,16 @@
-import Permission from "../../Permission.js";
-
 import RedirectAction from "../permissions/actions/Redirect.js";
 
+import { createRouteChange } from "../actions/ROUTE_CHANGE.js";
+
+import Permission from "../../Permission.js";
 import Chrome from "../../Chrome.js";
-import Error from "../../Error.js";
-import State from "../../State.js";
+import Store from "../../Store.js";
 
 var actions = {
     "REDIRECT": RedirectAction
 };
 
 var Bridge = {
-    "appState": {
-        "get": State.get,
-        "set": State.set
-    },
     "steps": {
         injectDefinitionStep( context, next ){
             context.definition = this;
@@ -50,31 +46,8 @@ var Bridge = {
 
             next();
         },
-        loadAppStateStep( context, next ){
-            context.appState = State.get();
-
-
-            next();
-        },
-        actionStep( context, next ){
-            try{
-                context.definition.controller.runAction(
-                    context.definition.action,
-                    {
-                        "meta": {
-                            "app": context,
-                            "verb": context.verb,
-                            "route": context.path
-                        },
-                        "params": context.params,
-                        "definition": context.definition
-                    }
-                );
-            }
-            catch( any ){
-                Error.emit( "Caught an error while processing route", any, context );
-                next();
-            }
+        actionStep( context ){
+            Store.get().dispatch( createRouteChange( context ) );
         }
     }
 };

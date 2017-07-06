@@ -13,7 +13,8 @@ var Controller = {
     },
     create( props ){
         return Object.assign( Object.create( Controller ), props );
-    }
+    },
+    subscribe(){}
 };
 
 export default Controller;
