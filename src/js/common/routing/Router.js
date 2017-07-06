@@ -4,14 +4,9 @@ import template from "lodash/template";
 
 import Routes from "./Routes.js";
 
-import Core from "../../routers/core.js";
-import Secrets from "../../routers/secrets.js";
+import routers from "../../routers/routers.js";
 import * as Strongbox from "../../routers/strongbox.js";
 
-var routers = [
-    Core,
-    Secrets
-];
 var Router;
 
 function routeToFullPath( path ){

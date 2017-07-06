@@ -6,6 +6,8 @@ public/css/
 public/js/
 src/content/html/templates.json
 src/content/routes/clientRoutes.json
+src/js/controllers/controllers.js
+src/js/routers/routers.js
 
 # Logs
 logs
