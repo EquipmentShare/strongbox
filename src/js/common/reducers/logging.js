@@ -13,7 +13,6 @@ export default function loggingReducer( state = [], action ){
                 .concat( newState )
                 .concat( {
                     "id": guid,
-                    "state": action.state,
                     "action": action.action
                 } );
         }
