@@ -1,4 +1,7 @@
 import Controller from "../Controller.js";
+import Store from "../Store.js";
+
+import * as RouteChangeUnhandled from "../common/actions/ROUTE_CHANGE_UNHANDLED.js";
 
 import ErrorView from "../views/error.js";
 
@@ -8,21 +11,15 @@ var Error = Controller.create( {
     },
 
     subscriber( state ){
-        var responder = ( () => {} );
-        var hasState = Boolean( state );
-        var hasError = hasState && state.routing.currentError;
+        var lastAction = Store.getLastAction( state );
 
-        if( hasState && hasError ){
-            responder = () => {
-                Error.actionDefault( Object.assign(
-                    {},
-                    state.routing.currentContext,
-                    { "error": state.routing.currentError }
-                ) );
-            };
+        if( lastAction && lastAction.action.type == RouteChangeUnhandled.TYPE ){
+            Error.actionDefault( Object.assign(
+                {},
+                state.routing.currentContext,
+                { "error": state.routing.currentError }
+            ) );
         }
-
-        responder();
     }
 } );
 

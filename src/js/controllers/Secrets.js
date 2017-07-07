@@ -1,4 +1,7 @@
 import Controller from "../Controller.js";
+import Store from "../Store.js";
+
+import * as RouteChange from "../common/actions/ROUTE_CHANGE.js";
 
 import SecretsView from "../views/secrets.js";
 
@@ -8,20 +11,18 @@ var Secrets = Controller.create( {
     },
 
     subscriber( state ){
-        var responder = ( () => {} );
-        var responders = {
-            "secrets": Secrets.actionDefault
-        };
-        var hasState = Boolean( state );
-        var routeName = hasState && state.routing.currentContext.definition.name;
+        var lastAction = Store.getLastAction( state );
 
-        if( hasState && responders[ routeName ] ){
-            responder = () => {
-                responders[ routeName ]( state.routing.currentContext );
+        if( lastAction && lastAction.action.type == RouteChange.TYPE ){
+            let responders = {
+                "secrets": Secrets.actionDefault
             };
-        }
+            let routeName = state.routing.currentContext.definition.name;
 
-        responder();
+            if( responders[ routeName ] ){
+                responders[ routeName ]( state.routing.currentContext );
+            }
+        }
     }
 } );
 
