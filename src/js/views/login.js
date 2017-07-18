@@ -20,13 +20,10 @@ var LoginView = {
 
             AuthController
                 .login( data.username, data.password )
-                .then(
-                    () => {},
-                    () => {
-                        /* eslint "no-console": "off", "no-debugger": "off", "vars-on-top": "off", "no-unused-vars": "off", "complexity": "off" */
-                        console.log( "handle errors in form" );
-                    }
-                );
+                .catch( () => {
+                    /* eslint "no-console": "off", "no-debugger": "off", "vars-on-top": "off", "no-unused-vars": "off", "complexity": "off" */
+                    console.log( "handle errors in form" );
+                } );
 
             return false;
         }
