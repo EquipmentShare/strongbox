@@ -1,1 +1,3 @@
-<span class="{{ weight }} fa-{{ icon }}"></span>
+<span><!-- extra span so when FA rips out the internals, Ractive can hold on to a target node to render on changes -->
+    <span class="{{ weight }} fa-{{ icon }}"></span>
+</span>
