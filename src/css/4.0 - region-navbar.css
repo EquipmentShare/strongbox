@@ -67,7 +67,7 @@ body > nav li a{
     text-decoration: none;
 }
 
-body > nav li svg{
+body > nav li svg.svg-inline--fa{
     height: 2rem;
     width: 2rem;
 }
