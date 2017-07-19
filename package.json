@@ -15,6 +15,7 @@
     "page": "1.7.1",
     "ractive": "0.9.1",
     "redux": "3.7.1",
+    "rxjs": "5.4.2",
     "superagent": "3.5.2"
   },
   "repository": {

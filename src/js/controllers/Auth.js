@@ -1,8 +1,6 @@
 import Controller from "../Controller.js";
-import Store from "../Store.js";
-import Router from "../common/routing/Router.js";
 
-import * as RouteChange from "../common/actions/ROUTE_CHANGE.js";
+import Router from "../common/routing/Router.js";
 
 import LoginView from "../views/login.js";
 
@@ -34,20 +32,11 @@ var Auth = Controller.create( {
             );
     },
 
-    subscriber( state ){
-        var lastAction = Store.getLastAction( state );
-
-        if( lastAction && lastAction.action.type == RouteChange.TYPE ){
-            let responders = {
-                "login": Auth.actionLogin,
-                "logout": Auth.actionLogout
-            };
-            let routeName = state.routing.currentContext.definition.name;
-
-            if( responders[ routeName ] ){
-                responders[ routeName ]( state.routing.currentContext );
-            }
-        }
+    subscriber( storeStream ){
+        storeStream.subscribe( Auth.handleRouteChange( {
+            "login": Auth.actionLogin,
+            "logout": Auth.actionLogout
+        } ) );
     }
 } );
 
