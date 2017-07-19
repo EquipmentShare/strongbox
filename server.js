@@ -4,8 +4,8 @@ var url = require( "url" );
 var path = require( "path" );
 var fs = require( "fs" );
 
-var port = process.argv[ 2 ] || 8020;
-var cwd = process.cwd();
+var port = process.argv[ 2 ] || 8020; /* global process */
+var cwd = process.cwd(); /* global process */
 
 var root = path.join( cwd, "/public/" );
 
@@ -30,12 +30,6 @@ function getContentType( p ){
     return contentTypes[ path.extname( p ) ];
 }
 
-function canCompress( request ){
-    var accept = request.headers[ "accept-encoding" ] || "";
-
-    return accept.match( /\b(?:gzip|deflate)\b/ );
-}
-
 function compression( request ){
     var enc = request.headers[ "accept-encoding" ] || "";
     var alg = false;
@@ -55,7 +49,6 @@ function serveFile( p, response, request ){
         p,
         "utf8",
         ( err, file ) => {
-            let shouldCompress = canCompress( request );
             let code = 200;
             let headers = {};
             let content = "";
@@ -71,14 +64,13 @@ function serveFile( p, response, request ){
                     raw = "compression error";
                 }
 
-                headers[ "Content-Length" ] = Buffer.byteLength( raw );
+                headers[ "Content-Length" ] = Buffer.byteLength( raw ); /* global Buffer */
 
                 response.writeHead( code, headers );
                 response.end( raw, "utf8" );
 
                 if( code == 200 ){
-                    /* eslint no-console: "off", no-debugger: "off", vars-on-top: "off", "no-unused-vars": "off" */
-                    console.log( `<== .${p}` );
+                    console.log( `<== .${p}` ); // eslint-disable-line no-console
                 }
             }
 
@@ -121,24 +113,19 @@ function handleRequest( p, response, request ){
     } );
 }
 
-function notFound( p, response ){
-    response.writeHead( 404 );
-    response.end();
-}
-
 function serve( request, response ){
     var uri = url.parse( request.url ).pathname;
     var file = getFile( uri );
     var filename = path.join( root, file );
 
-    console.log( `==> ${uri}` );
+    console.log( `==> ${uri}` ); // eslint-disable-line no-console
     handleRequest( filename, response, request );
 }
 
-console.log( "Creating a server..." );
+console.log( "Creating a server..." ); // eslint-disable-line no-console
 
 http
     .createServer( serve )
     .listen( parseInt( port, 10 ) );
 
-console.log( `Listening on :${port}` );
+console.log( `Listening on :${port}` ); // eslint-disable-line no-console
