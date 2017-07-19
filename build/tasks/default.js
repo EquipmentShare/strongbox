@@ -7,7 +7,6 @@ module.exports = function DefaultGruntTask( grunt ){
             "parseTemplates",
             "parseRoutes",
             "parseControllers",
-            "parseRouters",
 
             "rollup",
             "concat:app",
