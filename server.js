@@ -1,4 +1,5 @@
 var http = require( "http" );
+var zlib = require( "zlib" );
 var url = require( "url" );
 var path = require( "path" );
 var fs = require( "fs" );
@@ -11,6 +12,7 @@ var root = path.join( cwd, "/public/" );
 var contentTypes = {
     ".html": "text/html",
     ".css": "text/css",
+    ".js": "application/javascript",
     ".svg": "image/svg+xml"
 };
 
@@ -25,34 +27,85 @@ function getFile( uri ){
 }
 
 function getContentType( p ){
-    var content = contentTypes[ path.extname( p ) ];
-
-    if( content ){
-        content = { "Content-Type": content };
-    }
-
-    return content;
+    return contentTypes[ path.extname( p ) ];
 }
 
-function serveFile( p, response ){
+function canCompress( request ){
+    var accept = request.headers[ "accept-encoding" ] || "";
+
+    return accept.match( /\b(?:gzip|deflate)\b/ );
+}
+
+function compression( request ){
+    var enc = request.headers[ "accept-encoding" ] || "";
+    var alg = false;
+
+    if( /\bdeflate\b/.test( enc ) ){
+        alg = "deflate";
+    }
+    else if( /\bgzip\b/.test( enc ) ){
+        alg = "gzip";
+    }
+
+    return alg;
+}
+
+function serveFile( p, response, request ){
     fs.readFile(
         p,
-        "binary",
+        "utf8",
         ( err, file ) => {
+            let shouldCompress = canCompress( request );
+            let code = 200;
+            let headers = {};
+            let content = "";
+
+            function finishStream( error, compressedResultBuffer, raw ){
+                if( !error && !raw  ){
+                    headers[ "Content-Encoding" ] = compression( request );
+                    raw = compressedResultBuffer;
+                }
+
+                if( error ){
+                    headers[ "Content-Type" ] = "text/plain";
+                    raw = "compression error";
+                }
+
+                headers[ "Content-Length" ] = Buffer.byteLength( raw );
+
+                response.writeHead( code, headers );
+                response.end( raw, "utf8" );
+
+                if( code == 200 ){
+                    /* eslint no-console: "off", no-debugger: "off", vars-on-top: "off", "no-unused-vars": "off" */
+                    console.log( `<== .${p}` );
+                }
+            }
+
             if( err ){
-                response.writeHead( 500, { "Content-Type": "text/plain" } );
-                response.write( err + "\n" );
-                response.end();
+                headers[ "Content-Type" ] = "text/plain";
+                code = 500;
+                content = err + "\n";
             }
             else{
-                let content = getContentType( p ) || "binary";
+                headers[ "Content-Type" ] = getContentType( p );
+                code = 200;
+                content = file;
+            }
 
-                /* eslint no-console: "off", no-debugger: "off", vars-on-top: "off", "no-unused-vars": "off" */
-                console.log( `<== .${p}` );
+            headers[ "Content-Type" ] += "; charset=utf-8";
 
-                response.writeHead( 200 );
-                response.write( file, content );
-                response.end();
+            switch( compression( request ) ){
+                case "gzip":
+                    zlib.gzip( content, finishStream );
+                    break;
+
+                case "deflate":
+                    zlib.deflate( content, finishStream );
+                    break;
+
+                default:
+                    finishStream( null, null, content );
             }
         }
     );
@@ -62,12 +115,9 @@ function handleRequest( p, response, request ){
     fs.access( p, ( error ) => {
         if( error ){
             p = path.join( root, "/index.html" );
+        }
 
-            serveFile( p, response );
-        }
-        else{
-            serveFile( p, response );
-        }
+        serveFile( p, response, request );
     } );
 }
 
