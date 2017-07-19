@@ -1,5 +1,8 @@
 import String from "./String.js";
 import View from "./View.js";
+import Store from "./Store.js";
+
+import * as RouteChange from "./common/actions/ROUTE_CHANGE.js";
 
 var Controller = {
     runAction( action = "default", context = {} ){
@@ -14,7 +17,27 @@ var Controller = {
     create( props ){
         return Object.assign( Object.create( Controller ), props );
     },
-    subscriber(){}
+    subscriber(){},
+    handleAction( map ){
+        return ( state ) => {
+            let lastAction = Store.getLastAction( state );
+
+            if( lastAction && map[ lastAction.action.type ] ){
+                map[ lastAction.action.type ]( state );
+            }
+        };
+    },
+    handleRouteChange( map ){
+        return Controller.handleAction( {
+            [RouteChange.TYPE]: ( state ) => {
+                let routeName = state.routing.currentContext.definition.name;
+
+                if( map[ routeName ] ){
+                    map[ routeName ]( state.routing.currentContext );
+                }
+            }
+        } );
+    }
 };
 
 export default Controller;

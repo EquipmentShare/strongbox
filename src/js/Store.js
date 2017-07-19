@@ -1,3 +1,4 @@
+import { Observable } from "rxjs";
 import { createStore, applyMiddleware } from "redux";
 
 import RootReducer from "./common/reducers/root.js";
@@ -15,9 +16,24 @@ var Store = {
     get(){
         return window[ window.ns ].store;
     },
+    toObservable( store ){
+        return Observable.create(
+            ( observer ) => {
+                let unsub = store.subscribe(
+                    () => observer.next( store.getState() )
+                );
+
+                return function unsubscribe(){
+                    unsub();
+                };
+            }
+        );
+    },
     registerAllControllers( store ){
+        var stream = Store.toObservable( store );
+
         controllers.forEach( ( controller ) => {
-            store.subscribe( () => controller.subscriber( store.getState() ) );
+            controller.subscriber( stream );
         } );
     },
     getLastAction( state ){
