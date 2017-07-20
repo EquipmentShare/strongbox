@@ -1,4 +1,4 @@
-import { Observable } from "rxjs";
+import { Observable } from "rxjs/Observable";
 import { createStore, applyMiddleware } from "redux";
 
 import RootReducer from "./common/reducers/root.js";
