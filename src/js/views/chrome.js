@@ -5,6 +5,7 @@ import Icon from "../components/Icon.js";
 import Authentication from "../Authentication.js";
 import Templates from "../Templates.js";
 import Storage from "../Storage.js";
+import Store from "../Store.js";
 
 import translations from "../nls/views/chrome.js";
 
@@ -14,13 +15,9 @@ var ChromeView = Ractive.extend( {
         return {
             "collapsed": false,
             "selected": "home",
+            "loggedIn": false,
             translations
         };
-    },
-    "computed": {
-        loggedIn(){
-            return Authentication.isLoggedIn();
-        }
     },
     "components": {
         "icon": Icon
@@ -29,6 +26,10 @@ var ChromeView = Ractive.extend( {
     "on": {
         init(){
             this.loadState();
+
+            Store.subscribe( () => {
+                this.set( "loggedIn", Authentication.isLoggedIn() );
+            } );
         },
         flex(){
             this.toggle( "collapsed" );
@@ -47,7 +48,8 @@ var ChromeView = Ractive.extend( {
 
         this.set( {
             "collapsed": menu && menu.collapsed || false,
-            "selected": menu && menu.active || "home"
+            "selected": menu && menu.active || "home",
+            "loggedIn": Authentication.isLoggedIn()
         } );
     },
     redraw(){
