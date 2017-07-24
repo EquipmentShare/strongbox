@@ -1,8 +1,10 @@
-import Storage from "./Storage";
+import Store from "./Store.js";
+
+import { createMainMenuSelect } from "./common/actions/MAIN_MENU_SELECT.js";
 
 var Chrome = {
     prepare( definition ){
-        Storage.set( "strongbox.menus.main.active", definition.menu );
+        Store.dispatch( createMainMenuSelect( definition.menu ) );
         window.document.title = definition.title ? `${definition.title} ❚ Strongbox` : "Strongbox";
     }
 };
