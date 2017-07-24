@@ -4,8 +4,10 @@ import Icon from "../components/Icon.js";
 
 import Authentication from "../Authentication.js";
 import Templates from "../Templates.js";
-import Storage from "../Storage.js";
 import Store from "../Store.js";
+
+import { createMainMenuToggle } from "../common/actions/MAIN_MENU_TOGGLE.js";
+import { createMainMenuSelect } from "../common/actions/MAIN_MENU_SELECT.js";
 
 import translations from "../nls/views/chrome.js";
 
@@ -25,35 +27,35 @@ var ChromeView = Ractive.extend( {
 
     "on": {
         init(){
-            this.loadState();
-
             Store.subscribe( () => {
-                this.set( "loggedIn", Authentication.isLoggedIn() );
+                this.loadState();
             } );
+        },
+        render(){
+            this.loadState();
         },
         flex(){
             this.toggle( "collapsed" );
 
-            Storage.set( "strongbox.menus.main.collapsed", this.get( "collapsed" ) );
+            Store.dispatch( createMainMenuToggle( this.get( "collapsed" ) ) );
         }
     },
 
     setMenu( newSelection = "home" ){
         this.set( "selected", newSelection );
 
-        Storage.set( "strongbox.menus.main.active", newSelection );
+        Store.dispatch( createMainMenuSelect( newSelection ) );
     },
     loadState(){
-        var menu = Storage.get( "strongbox.menus.main" );
+        var state = Store.getState();
 
-        this.set( {
-            "collapsed": menu && menu.collapsed || false,
-            "selected": menu && menu.active || "home",
-            "loggedIn": Authentication.isLoggedIn()
-        } );
-    },
-    redraw(){
-        this.update( "loggedIn" );
+        if( state ){
+            this.set( {
+                "collapsed": state.menus.main.collapsed,
+                "selected": state.menus.main.active,
+                "loggedIn": Authentication.isLoggedIn()
+            } );
+        }
     }
 } );
 

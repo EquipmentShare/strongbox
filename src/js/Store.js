@@ -3,6 +3,9 @@ import { createStore, applyMiddleware } from "redux";
 
 import { initialState, default as RootReducer } from "./common/reducers/root.js";
 import ReduxAuth from "./common/middlewares/reduxAuth.js";
+import ReduxMenus from "./common/middlewares/reduxMenus.js";
+
+import Storage from "./Storage.js";
 import Authentication from "./Authentication.js";
 
 import controllers from "./controllers/controllers.js";
@@ -11,12 +14,17 @@ var Store = {
     init(){
         var coldState = Object.assign( {}, initialState );
         var storedToken = Authentication.getToken();
+        var storedMenus = Storage.get( "strongbox.menus" );
 
         if( storedToken ){
             coldState.auth.token = storedToken;
         }
 
-        return Store.create( RootReducer, coldState, applyMiddleware( ReduxAuth ) );
+        if( storedMenus ){
+            coldState.menus = Object.assign( {}, storedMenus );
+        }
+
+        return Store.create( RootReducer, coldState, applyMiddleware( ReduxAuth, ReduxMenus ) );
     },
     create( ...args ){
         return createStore( ...args );
@@ -49,13 +57,13 @@ var Store = {
     },
 
     getState(){
-        Store.get().getState();
+        return Store.get().getState();
     },
     dispatch( action ){
-        Store.get().dispatch( action );
+        return Store.get().dispatch( action );
     },
     subscribe( fn ){
-        Store.get().subscribe( fn );
+        return Store.get().subscribe( fn );
     }
 };
 
