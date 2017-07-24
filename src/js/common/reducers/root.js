@@ -5,12 +5,14 @@ var initialState = {
     "routing": {
         "currentContext": {}
     },
-    "log": []
+    "logging": {
+        "last": null
+    }
 };
 
 export default function rootReducer( state = initialState, action ){
     return {
         "routing": RoutingReducer( state.routing, action ),
-        "log": LoggingReducer( state.log, action )
+        "logging": LoggingReducer( state.logging, action )
     };
 }

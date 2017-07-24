@@ -1,14 +1,13 @@
 import { Observable } from "rxjs/Observable";
-import { createStore, applyMiddleware } from "redux";
+import { createStore } from "redux";
 
 import RootReducer from "./common/reducers/root.js";
-import ReduxLogger from "./common/middlewares/reduxLogger.js";
 
 import controllers from "./controllers/controllers.js";
 
 var Store = {
     init(){
-        return Store.create( RootReducer, applyMiddleware( ReduxLogger ) );
+        return Store.create( RootReducer );
     },
     create( ...args ){
         return createStore( ...args );
@@ -37,9 +36,7 @@ var Store = {
         } );
     },
     getLastAction( state ){
-        var lastAction = state.log.length > 0 ? state.log[ state.log.length - 1 ] : false;
-
-        return lastAction;
+        return state.logging.last;
     }
 };
 

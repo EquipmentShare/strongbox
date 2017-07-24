@@ -15,7 +15,6 @@ var Auth = Controller.create( {
         Authentication.logout();
 
         Router.go( {
-            "namespace": "Core",
             "name": "login"
         } );
     },

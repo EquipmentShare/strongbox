@@ -22,8 +22,8 @@ var Controller = {
         return ( state ) => {
             let lastAction = Store.getLastAction( state );
 
-            if( lastAction && map[ lastAction.action.type ] ){
-                map[ lastAction.action.type ]( state );
+            if( lastAction && map[ lastAction.type ] ){
+                map[ lastAction.type ]( state );
             }
         };
     },
