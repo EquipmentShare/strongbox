@@ -1,11 +1,13 @@
+import Authentication from "../Authentication.js";
 import Controller from "../Controller.js";
+import Store from "../Store.js";
 
 import Router from "../common/routing/Router.js";
 
 import LoginView from "../views/login.js";
-
 import AuthConnector from "../connectors/auth.js";
-import Authentication from "../Authentication.js";
+
+import { createLoginSuccess } from "../common/actions/LOGIN_SUCCESS.js";
 
 var Auth = Controller.create( {
     actionLogin( ctx ){
@@ -15,21 +17,20 @@ var Auth = Controller.create( {
         Authentication.logout();
 
         Router.go( {
-            "namespace": "Core",
             "name": "login"
         } );
     },
 
-    login( username, password, follow = { "namespace": "Core", "name": "home" } ){
+    login( username, password, follow = { "name": "home" } ){
         return AuthConnector
             .ldapLogin( username, password )
-            .then(
-                ( response ) => {
-                    Authentication.setToken( response.auth.client_token );
+            .then( ( response ) => {
+                Store.dispatch( createLoginSuccess( {
+                    "auth": response.auth
+                } ) );
 
-                    Router.go( follow );
-                }
-            );
+                Router.go( follow );
+            } );
     },
 
     subscriber( storeStream ){

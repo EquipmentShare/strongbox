@@ -1,14 +1,22 @@
 import { Observable } from "rxjs/Observable";
 import { createStore, applyMiddleware } from "redux";
 
-import RootReducer from "./common/reducers/root.js";
-import ReduxLogger from "./common/middlewares/reduxLogger.js";
+import { initialState, default as RootReducer } from "./common/reducers/root.js";
+import ReduxAuth from "./common/middlewares/reduxAuth.js";
+import Authentication from "./Authentication.js";
 
 import controllers from "./controllers/controllers.js";
 
 var Store = {
     init(){
-        return Store.create( RootReducer, applyMiddleware( ReduxLogger ) );
+        var coldState = Object.assign( {}, initialState );
+        var storedToken = Authentication.getToken();
+
+        if( storedToken ){
+            coldState.auth.token = storedToken;
+        }
+
+        return Store.create( RootReducer, coldState, applyMiddleware( ReduxAuth ) );
     },
     create( ...args ){
         return createStore( ...args );
@@ -37,9 +45,17 @@ var Store = {
         } );
     },
     getLastAction( state ){
-        var lastAction = state.log.length > 0 ? state.log[ state.log.length - 1 ] : false;
+        return state.logging.last;
+    },
 
-        return lastAction;
+    getState(){
+        Store.get().getState();
+    },
+    dispatch( action ){
+        Store.get().dispatch( action );
+    },
+    subscribe( fn ){
+        Store.get().subscribe( fn );
     }
 };
 

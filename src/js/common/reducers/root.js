@@ -1,16 +1,23 @@
 import RoutingReducer from "./routing.js";
 import LoggingReducer from "./logging.js";
+import AuthenticationReducer from "./authentication.js";
 
-var initialState = {
+export var initialState = {
     "routing": {
         "currentContext": {}
     },
-    "log": []
+    "logging": {
+        "last": null
+    },
+    "auth": {
+        "token": null
+    }
 };
 
 export default function rootReducer( state = initialState, action ){
     return {
         "routing": RoutingReducer( state.routing, action ),
-        "log": LoggingReducer( state.log, action )
+        "logging": LoggingReducer( state.logging, action ),
+        "auth": AuthenticationReducer( state.auth, action )
     };
 }
