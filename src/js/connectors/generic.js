@@ -1,6 +1,6 @@
 import Ajax from "../Ajax.js";
 
-var AuthConnector = {
+var GenericConnector = {
     read( path = "" ){
         // return this.
         //     sendToVault( {
@@ -88,6 +88,6 @@ var AuthConnector = {
     }
 };
 
-Object.setPrototypeOf( AuthConnector, Ajax );
+Object.setPrototypeOf( GenericConnector, Ajax );
 
-export default AuthConnector;
+export default GenericConnector;
