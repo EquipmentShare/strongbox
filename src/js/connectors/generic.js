@@ -1,27 +1,47 @@
 import Ajax from "../Ajax.js";
 
-var GenericConnector = {
+// const PREFIX = "secret/";
+var GenericConnector;
+
+// function stripPrefix( path ){
+//     var parts;
+//
+//     if( typeof path == "string" ){
+//         parts = path.split( "/" );
+//
+//         if( parts[ 0 ] == PREFIX ){
+//             path = parts.slice( 1 ).join( "/" );
+//         }
+//         else{
+//             path = parts.join( "/" );
+//         }
+//     }
+//
+//     return path;
+// }
+
+GenericConnector = {
     read( path = "" ){
         // return this.
         //     sendToVault( {
         //         "method": "get",
-        //         "url": `/secret/${path}`
+        //         "url": `/secret/${stripPrefix( path )}`
         //     } );
 
         var payloads = {
-            "foo": {
+            "secret/foo": {
                 "prop": "foo"
             },
-            "keys/stuff": {
+            "secret/keys/stuff": {
                 "prop": "stuff"
             },
-            "keys/things": {
+            "secret/keys/things": {
                 "prop": "things"
             },
-            "keys/more/friend": {
+            "secret/keys/more/friend": {
                 "prop": "friend"
             },
-            "keys/hello/there": {
+            "secret/keys/hello/there": {
                 "prop": "there"
             }
         };
@@ -50,20 +70,20 @@ var GenericConnector = {
         // return this
         //     .sendToVault( {
         //         "method": "list",
-        //         "url": `/secret/${path}`
+        //         "url": `/secret/${stripPrefix( path )}`
         //     } );
 
         var payloads = {
             "default": {
                 "keys": [ "foo", "keys/" ]
             },
-            "keys/": {
+            "secret/keys/": {
                 "keys": [ "hello/", "stuff", "things", "more/" ]
             },
-            "keys/hello/": {
+            "secret/keys/hello/": {
                 "keys": [ "there" ]
             },
-            "keys/more/": {
+            "secret/keys/more/": {
                 "keys": [ "friend" ]
             }
         };
@@ -76,7 +96,7 @@ var GenericConnector = {
         };
         var response;
 
-        if( payloads[ path ] || path == "" ){
+        if( payloads[ path ] || path == "" || path == "secret" || path == "secret/" ){
             wrapper.data = payloads[ path ] || payloads.default;
             response = Promise.resolve( wrapper );
         }
