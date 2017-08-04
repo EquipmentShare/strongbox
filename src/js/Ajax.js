@@ -1,5 +1,3 @@
-import ajax from "superagent/superagent.js";
-
 import Authentication from "./Authentication.js";
 import System from "./System";
 
@@ -8,16 +6,25 @@ var Ajax;
 function addBearerToken( headers ){
     var apiToken = Authentication.getToken();
 
-    headers.Authorization = `Bearer ${apiToken}`;
+    headers[ "X-Vault-Token" ] = apiToken;
 
     return headers;
 }
 
 Ajax = {
     send( options ){
-        return ajax[ options.method ]( options.url )
-            .set( options.headers || {} )
-            .send( options.data );
+        var url = options.url;
+        var content = options.data;
+
+        delete options.url;
+        delete options.data;
+
+        options.headers = new Headers( options.headers );
+        if( content ){
+            options.body = content;
+        }
+
+        return fetch( url, options );
     },
     sendToVault( options ){
         var settings = System.getSettings();
