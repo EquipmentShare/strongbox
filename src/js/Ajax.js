@@ -30,7 +30,7 @@ Ajax = {
         var settings = System.getSettings();
 
         options.headers = addBearerToken( options.headers || {} );
-        options.url =  `${settings.vault}${options.url}`;
+        options.url =  `${settings.vault}${settings.version}${options.url}`;
 
         return Ajax.send( options );
     }

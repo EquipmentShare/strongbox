@@ -4,6 +4,7 @@ var System = {
     getSettings(){
         return {
             "vault": config.vault,
+            "version": "/v1",
             "backends": config.secrets,
             "auths": config.auths
         };
