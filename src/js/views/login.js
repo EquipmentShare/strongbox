@@ -22,7 +22,7 @@ var LoginView = {
                 .login( data.username, data.password )
                 .catch( () => {
                     /* eslint "no-console": "off", "no-debugger": "off", "vars-on-top": "off", "no-unused-vars": "off", "complexity": "off" */
-                    console.log( "handle errors in form" );
+                    console.log( "handle network errors in form" );
                 } );
 
             return false;
