@@ -9,7 +9,7 @@ var Icon = Ractive.extend( {
     "template": Templates.getComponent( "Icon" ),
     data(){
         return {
-            "icon": "",
+            "icon": "no-icon",
             "type": "light"
         };
     },
